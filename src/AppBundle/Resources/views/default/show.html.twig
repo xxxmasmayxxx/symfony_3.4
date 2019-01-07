@@ -1,0 +1,19 @@
+{% extends '@App/base.html.twig' %}
+
+{% block title %}Show News{% endblock %}
+
+{% block body %}
+
+    <h1> {{ news.title }} </h1>
+
+<br><br>
+
+    {{ news.text}}
+
+<br><br>
+
+    {{ news.date|date('d/m/Y') }}
+
+    {#todo: make tags(href), read now (rand every 3 sec), readed#}
+
+{% endblock %}

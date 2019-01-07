@@ -1,12 +1,151 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        </head>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+
+    <title>{% block title %}Welcome to News Site{% endblock %}</title>
+
+</head>
+                    {#todo: make normal carousel#}
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{{ path('home') }}" >New Site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                {#<li class="nav-item active">#}
+                    {#<a class="nav-link" href="{{ path('home') }}">News List <span class="sr-only">(current)</span></a>#}
+                {#</li>#}
+                {#<li class="nav-item">#}
+                    {#<a class="nav-link" href="#">Link</a>#}
+                {#</li>#}
+                {#<li class="nav-item">#}
+                    {#<a class="nav-link disabled" href="#">Disabled</a>#}
+                {#</li>#}
+
+                {#<li class="nav-item dropdown">#}
+
+                    {#<a class="nav-link dropdown-toggle" href="https://example.com"#}
+                       {#id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>#}
+
+                    {#<div class="dropdown-menu" aria-labelledby="dropdown01">#}
+                        {#<a class="dropdown-item" href="#">Action</a>#}
+                        {#<a class="dropdown-item" href="#">Another action</a>#}
+                        {#<a class="dropdown-item" href="#">Something else here</a>#}
+                    {#</div>#}
+                                                    {#todo: make menu#}
+                <li class="nav-item dropdown">
+
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown Submenu link
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Submenu action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+                                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle"
+                                                                        href="#">Subsubmenu</a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                </li>
+
+            </ul>
+                                    {#todo: make search with js#}
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+
+
+    {% block body %}
+
+
+
+    {% endblock %}
+                            {#todo: make pagination with invisible table middle pages#}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+
+                <div class="pagination-button">
+
+                    <li class="page-item"><a class="page-link">...</a> </li>
+
+                </div>
+
+                <div class="pagination-load">
+
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+
+                </div>
+
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                </li>
+            </ul>
+        </nav>
+
+    </main><!-- /.container -->
+
+        <script src="{{ asset('bundles/app/js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/popper.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/main.js') }}"></script>
+          {% block javascripts %}{% endblock %}
+
     </body>
 </html>

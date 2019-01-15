@@ -1,52 +1,43 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet">
-    {% block stylesheets %}{% endblock %}
+
+    {% block stylesheets %}
+
+        <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet">
+
+    {% endblock %}
 
     <title>{% block title %}Welcome to News Site{% endblock %}</title>
 
 </head>
-                    {#todo: make normal carousel#}
+
     <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{{ path('home') }}" >New Site</a>
+
+        <a class="navbar-brand" href="{{ path('home') }}" >News Site</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                {#<li class="nav-item active">#}
-                    {#<a class="nav-link" href="{{ path('home') }}">News List <span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="#">Link</a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link disabled" href="#">Disabled</a>#}
-                {#</li>#}
 
-                {#<li class="nav-item dropdown">#}
+                {#todo: make menu#}
 
-                    {#<a class="nav-link dropdown-toggle" href="https://example.com"#}
-                       {#id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>#}
-
-                    {#<div class="dropdown-menu" aria-labelledby="dropdown01">#}
-                        {#<a class="dropdown-item" href="#">Action</a>#}
-                        {#<a class="dropdown-item" href="#">Another action</a>#}
-                        {#<a class="dropdown-item" href="#">Something else here</a>#}
-                    {#</div>#}
-                                                    {#todo: make menu#}
                 <li class="nav-item dropdown">
 
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -96,8 +87,8 @@
             </ul>
                                     {#todo: make search with js#}
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-0 my-md-0 my-lg-0">
+                <input class="form-control my-md-0 mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -111,12 +102,14 @@
 
 
     {% endblock %}
-                            {#todo: make pagination with invisible table middle pages#}
+
+
+    {% block pagination %}
 
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
+
+                <li class="page-item"><a class="page-link" href="{{ pages|first }}">First page</a></li>
 
                 <div class="pagination-button">
 
@@ -126,18 +119,38 @@
 
                 <div class="pagination-load">
 
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <table>
+
+                       {% for pages in pages|slice(pages|first, (pages|last-2)) %}
+
+                            {% if loop.index0 is divisibleby(3) %}
+
+                                <tr>
+
+                            {% endif %}
+
+                        <td>
+
+                         <li class="page-item"><a class="page-link" href="{{ pages }}">{{ pages }}</a> </li>
+
+                        </td>
+
+                       {% endfor %}
+
+                    </table>
 
                 </div>
 
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="{{ pages|last }}">Last page</a></li>
+
                 </li>
+
             </ul>
+
         </nav>
+
+    {% endblock %}
+
 
     </main><!-- /.container -->
 

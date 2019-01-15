@@ -18,6 +18,7 @@ $(".pagination-load").hide();
 
 $(".pagination-button").click(function(){
     $(".pagination-load").animate({
-        height: 'toggle'}, 1000
+        height: 'toggle'}, 2000
     );
+    $(".pagination-button").hide();
 });

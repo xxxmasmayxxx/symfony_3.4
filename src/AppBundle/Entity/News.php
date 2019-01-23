@@ -3,11 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//                                        todo add img propety
+//                                        todo add img property
 /**
  * News
  *
- * @ORM\Table(name="news")
+ * @ORM\Table(name="news", options={"collate"="utf8_swedish_ci"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NewsRepository")
  */
 class News

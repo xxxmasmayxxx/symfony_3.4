@@ -6,7 +6,6 @@ use AppBundle\Entity\News;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Controller\Pagination;
 
 class DefaultController extends Controller
 {

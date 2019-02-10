@@ -1,4 +1,4 @@
-{% extends '@App/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}News Site{% endblock %}
 
@@ -13,21 +13,21 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ asset('bundles/app/img/news.jpg') }}" alt="First slide">
+                <img class="d-block w-100" src="{{ asset('img/news.jpg') }}" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ last_news_list.0.title }}</h5>
                     <p>{{ last_news_list.0.text|slice(0, 100) }}</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('bundles/app/img/news2.jpg') }}" alt="Second slide">
+                <img class="d-block w-100" src="{{ asset('img/news2.jpg') }}" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ last_news_list.1.title }}</h5>
                     <p>{{ last_news_list.1.text|slice(0, 100) }}</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('bundles/app/img/news3.jpg') }}" alt="Third slide">
+                <img class="d-block w-100" src="{{ asset('img/news3.jpg') }}" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ last_news_list.2.title }}</h5>
                     <p>{{ last_news_list.2.text|slice(0, 100) }}</p>
@@ -44,15 +44,24 @@
         </a>
     </div>
 
+    <h1>Categories of News With Last News In It</h1>
 
-<h1>Last News</h1>
     <div class="news_list" >
-        {% for news in last_news_list %}
+        {% for categories in arrayCategoriesNews %}
 
-            <a href="{{ path('news_item', { id: news.id }) }}"><h4>{{ news.title }}</h4>{{ news.date|date('d/m/Y') }}</a><br><br>
+            {#<a href=""><h4>{{ categories}}</h4></a><br>#}
 
         {% endfor %}
     </div>
+
+{#<h1>Last News</h1>#}
+    {#<div class="news_list" >#}
+        {#{% for news in news_list %}#}
+
+            {#<a href="{{ path('news_item', { id: news.id }) }}"><h4>{{ news.title }}</h4>{{ news.date|date('d/m/Y') }}</a><br><br>#}
+
+        {#{% endfor %}#}
+    {#</div>#}
     {#todo: make category list with last news in it#}
 
     {#<dl>#}

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * News
  *
- * @ORM\Table(name="news", options={"collate"="utf8_swedish_ci"})
+ * @ORM\Table(name="news")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NewsRepository")
  */
 class News
@@ -37,8 +37,9 @@ class News
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\Column(name="category", type="string", length=25)
+     * @ORM\JoinColumn()
      */
     private $category;
 

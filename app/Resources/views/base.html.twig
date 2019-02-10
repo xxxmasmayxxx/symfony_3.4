@@ -11,8 +11,8 @@
 
     {% block stylesheets %}
 
-        <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     {% endblock %}
 
@@ -131,7 +131,7 @@
 
                         <td>
 
-                         <li class="page-item"><a class="page-link" href="{{ pages }}">{{ pages }}</a> </li>
+                         <li class="page-item"><a class="page-link" href="/{{ pages }}">{{ pages }}</a> </li>
 
                         </td>
 
@@ -154,10 +154,10 @@
 
     </main><!-- /.container -->
 
-        <script src="{{ asset('bundles/app/js/jquery-3.3.1.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/js/popper.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/js/main.js') }}"></script>
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
           {% block javascripts %}{% endblock %}
 
     </body>

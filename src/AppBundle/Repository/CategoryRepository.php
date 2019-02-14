@@ -10,4 +10,32 @@ namespace AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+//    public function getAllWithFiveLastNews()
+//    {
+//        return $this->createQueryBuilder('category')
+//            ->select('category')
+//            ->where('category.isActive = :isActive')
+////            ->andWhere('category.isActive = :isActive')
+//            ->setParameter('isActive', 0)
+////            ->leftJoin('category.categoryNews','categoryNews')
+////            ->where('category.categoryNews = :isActive')
+////            ->setParameter('isActive', 1)
+////            ->orderBy('categoryNews.date', 'DESC')
+//            ->getQuery()
+//            ->execute();
+//
+//    }
+
+    public function getLastNewsByCategory($category, $limit)
+    {
+        return $this->findBy(
+            [
+                'active' => '1',
+                'category' => $category,
+            ],
+            ['date' => 'DESC'],
+            $limit,
+            0
+        );
+    }
 }

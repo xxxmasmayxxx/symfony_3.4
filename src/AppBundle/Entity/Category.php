@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,23 @@ class Category
      */
     private $categoryName;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\News", mappedBy="category")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     */
+    private $categoryNews;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
+
+    public function __construct()
+    {
+        $this->categoryNews = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +80,30 @@ class Category
     {
         return $this->categoryName;
     }
+
+    /**
+     * @return ArrayCollection|News[]
+     */
+    public function getCategoryNews()
+    {
+        return $this->categoryNews;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
 }
 

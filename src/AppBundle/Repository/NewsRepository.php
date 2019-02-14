@@ -12,12 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class NewsRepository extends EntityRepository
 {
-    public function getLastNewsList()
+    public function getLastNewsList($limit)
     {
         return $this->findBy(
                 ['active' => '1'],
                 ['date' => 'DESC'],
-                3,
+                $limit,
                 0
             );
     }
@@ -44,4 +44,18 @@ class NewsRepository extends EntityRepository
             0
         );
     }
+
+
+//    public function getLastNewsInCategory($category, $limit)
+//    {
+//        $this
+//            ->createQueryBuilder('news')
+//            ->where('news.category = :category')
+//            ->setParameter('category', $category)
+//            ->getQuery()
+//            ->execute();
+//
+//        ;
+//    }
+
 }

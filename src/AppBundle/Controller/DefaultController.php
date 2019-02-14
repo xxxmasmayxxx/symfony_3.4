@@ -16,60 +16,62 @@ class DefaultController extends Controller
 
     public function indexAction($page = 1)
     {
+        $em = $this->getDoctrine();
 
-
-        $lastNewsList = $this
-            ->getDoctrine()
-            ->getManager()
+        $lastNewsList = $em
             ->getRepository('AppBundle:News')
-            ->getLastNewsList();
+            ->getLastNewsList(3);
 
         if (!$lastNewsList)
         {
             throw $this->createNotFoundException('There is no News List');
         }
 
-        $categoriesOfNews = $this
-            ->getDoctrine()
-            ->getRepository('AppBundle:Category')
-            ->findAll();
-
-        $allActiveNews = $this
-            ->getDoctrine()
+        $allActiveNews = $em
             ->getRepository('AppBundle:News')
             ->findBy(
                 ['active' => '1']
             );
 
-        $arrayCategoriesNews = [];
-        foreach ($categoriesOfNews as $category)
-        {
-            $lastNewsInCategory = $this
-                ->getDoctrine()
-                ->getRepository('AppBundle:News')
-                ->getLastNewsByCategory($category, 5);
-
-            foreach ($lastNewsInCategory as $news)
-            {
-                dump($category->getCategoryName().'-'.$news->getTitle());
-//                $arrayCategoriesNews[$category->getCategoryName()] =
-//                    [$news->getTitle()
-//                    ];
-            }
-
-        }
-dump($arrayCategoriesNews);
-
+        $categoriesOfNews = $em
+            ->getRepository('AppBundle:Category')
+            ->findAll();
 
         $numInList = 5;
 
         $page = $page * $numInList - $numInList;
 
-        $NewsList = $this
-            ->getDoctrine()
-            ->getManager()
+        $NewsList = $em
             ->getRepository('AppBundle:News')
             ->getNewsList($numInList, $page);
+
+        foreach ($categoriesOfNews as $category)
+        {
+
+            $news = $em->getRepository('AppBundle:News')
+                ->getLastNewsByCategory($category, 5);
+
+            foreach ($news as $newses)
+            {
+              $newsName[] = $newses->getTitle();
+            }
+
+            $categoryName = $category->getCategoryName();
+
+//            dump($newsName);
+//            $arrayCategoriesNews = [];
+            $arrayCategoriesNews2 = [$categoryName => $newsName];
+            dump($arrayCategoriesNews2);
+
+            unset($newsName);
+//            unset($arrayCategoriesNews);
+
+//      $i++;
+
+
+
+        }
+//dump($arrayCategoriesNews);
 
         $numOfNews = count($allActiveNews);
 
@@ -95,6 +97,7 @@ dump($arrayCategoriesNews);
      * @param News $news
      * @return Response
      */
+
     public function showAction(News $news)
     {
 

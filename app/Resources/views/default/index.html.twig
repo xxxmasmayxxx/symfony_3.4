@@ -47,12 +47,18 @@
     <h1>Categories of News With Last News In It</h1>
 
     <div class="news_list" >
-        {% for categories in arrayCategoriesNews %}
+        {#{% for category in arrayCategoriesNews %}#}
+{#{% dump %}#}
+        {#arrayCategoriesNews#}
+            {#<a href=""><h4>{{ category.name }}</h4></a><br>#}
 
-            {#<a href=""><h4>{{ categories}}</h4></a><br>#}
+            {#{% for news in categories.News %}#}
 
-        {% endfor %}
-    </div>
+                {#<a href=""><h4>{{ news.title}}</h4></a><br>#}
+
+        {#{% endfor %}#}
+        {#{% endfor %}#}
+     </div>
 
 {#<h1>Last News</h1>#}
     {#<div class="news_list" >#}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Category{% endblock %}
+
+{% block body %}
+
+    <dl>
+        <h2>{{ category }}</h2>
+    </dl>
+
+    {% for newsName in lastNewsInCategory %}
+
+        <dt>{{ newsName }}</dt>
+
+    {% endfor %}<br>
+
+{% endblock %}
+
+{% block pagination %}
+
+    {% include '../default/pagination.html.twig' %}
+
+{% endblock %}

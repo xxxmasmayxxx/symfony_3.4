@@ -37,9 +37,9 @@ class News
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="categoryNews")
-     * @ORM\Column(name="category", type="string", length=25)
+     * @ORM\JoinColumn(name="category", referencedColumnName="category")
      * @ORM\OrderBy({"createdAt" = "DESC"})
-     * @ORM\JoinColumn()
+     *
      */
     private $category;
 

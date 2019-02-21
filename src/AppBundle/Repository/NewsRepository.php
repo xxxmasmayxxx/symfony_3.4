@@ -45,17 +45,4 @@ class NewsRepository extends EntityRepository
         );
     }
 
-
-//    public function getLastNewsInCategory($category, $limit)
-//    {
-//        $this
-//            ->createQueryBuilder('news')
-//            ->where('news.category = :category')
-//            ->setParameter('category', $category)
-//            ->getQuery()
-//            ->execute();
-//
-//        ;
-//    }
-
 }

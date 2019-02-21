@@ -50,6 +50,10 @@ body .news_list{
   text-align: center;
 }
 
+.news_list A:hover{
+  text-decoration: none;
+}
+
 
 .pagination  {
   margin-top: 5rem;
@@ -57,6 +61,8 @@ body .news_list{
   margin-right:auto;
   width: 21rem;
 }
+
+
 
 
 

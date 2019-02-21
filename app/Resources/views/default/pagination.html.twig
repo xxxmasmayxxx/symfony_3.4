@@ -1,0 +1,42 @@
+<nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+                <li class="page-item"><a class="page-link" href="{{ pages|first }}">First page</a></li>
+
+                <div class="pagination-button">
+
+                    <li class="page-item"><a class="page-link">...</a> </li>
+
+                </div>
+
+                <div class="pagination-load">
+
+                    <table>
+
+                       {% for pages in pages|slice(pages|first, (pages|last-2)) %}
+
+                            {% if loop.index0 is divisibleby(3) %}
+
+                                <tr>
+
+                            {% endif %}
+
+                        <td>
+
+                         <li class="page-item"><a class="page-link" href="/{{ pages }}">{{ pages }}</a> </li>
+
+                        </td>
+
+                       {% endfor %}
+
+                    </table>
+
+                </div>
+
+                <li class="page-item"><a class="page-link" href="{{ pages|last }}">Last page</a></li>
+
+                </li>
+
+            </ul>
+
+        </nav>

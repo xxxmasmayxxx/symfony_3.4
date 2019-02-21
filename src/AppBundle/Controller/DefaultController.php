@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\News;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{page}", name="home", requirements={"id": "[0-9]+"})
+     * @Route("/", name="home")
      */
+//, requirements={"id": "[0-9]+"}
 
-    public function indexAction($page = 1)
+    public function indexAction()
     {
         $em = $this->getDoctrine();
 
@@ -37,13 +37,15 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Category')
             ->findAll();
 
-        $numInList = 5;
+        // pagination
 
-        $page = $page * $numInList - $numInList;
-
-        $NewsList = $em
-            ->getRepository('AppBundle:News')
-            ->getNewsList($numInList, $page);
+//        $numInList = 5;
+//
+//        $page = $page * $numInList - $numInList;
+//
+//        $NewsList = $em
+//            ->getRepository('AppBundle:News')
+//            ->getNewsList($numInList, $page);
 
         foreach ($categoriesOfNews as $category)
         {
@@ -59,9 +61,9 @@ class DefaultController extends Controller
             $categoryName = $category->getCategoryName();
 
 //            dump($newsName);
-//            $arrayCategoriesNews = [];
-            $arrayCategoriesNews2 = [$categoryName => $newsName];
-            dump($arrayCategoriesNews2);
+
+            $arrayCategoriesNews[] = [$categoryName => $newsName];
+//            dump($arrayCategoriesNews);
 
             unset($newsName);
 //            unset($arrayCategoriesNews);
@@ -73,21 +75,23 @@ class DefaultController extends Controller
         }
 //dump($arrayCategoriesNews);
 
-        $numOfNews = count($allActiveNews);
-
-        $pagin = ceil($numOfNews/$numInList);
-
-        for ($i = 1; $i <= $pagin; $i++ )
-        {
-                $pages[] = $i;
-        }
+//        $page = 1
+//
+//        $numOfNews = count($allActiveNews);
+//
+//        $pagin = ceil($numOfNews/$numInList);
+//
+//        for ($i = 1; $i <= $pagin; $i++ )
+//        {
+//                $pages[] = $i;
+//        }
 
         return $this->render('default/index.html.twig',  [
             'last_news_list' => $lastNewsList,
             'categoriesOfNews' => $categoriesOfNews,
             'arrayCategoriesNews'=> $arrayCategoriesNews,
-            'news_list' => $NewsList,
-            'pages' => $pages,
+//            'news_list' => $NewsList,
+//            'pages' => $pages,
 
         ]);
     }
